@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+
+
   resources :items
 
-  get 'user/new'
+  root 'items#index'
+
+  mount API => '/api'
+  mount GrapeSwaggerRails::Engine => 'apidoc'
+
+
+  # mount API::V1 => '/api'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

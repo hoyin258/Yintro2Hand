@@ -29,6 +29,21 @@ gem 'spring',        group: :development
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+#API
+gem 'grape'
+gem 'grape-entity'
+gem 'grape-swagger'
+gem 'grape-swagger-rails'
+gem 'grape-kaminari'
+gem 'garner'
+
+
+
+# group :development, :test do
+#   gem 'factory_girl_rails'
+# end
+
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

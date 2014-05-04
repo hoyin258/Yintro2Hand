@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  facebook_name: MyString
-  password_digest: MyString
-  facebook_id: MyString
-  token: MyString
-  email: MyString
+  name: hoyin
+  facebook_name: hoyin258
+  password_digest: 123456
+  facebook_id: hoyin258
+  token: 123456
+  email: hoyin258@gmail.com
 
 two:
-  name: MyString
-  facebook_name: MyString
-  password_digest: MyString
-  facebook_id: MyString
-  token: MyString
-  email: MyString
+  name: hoyin2
+  facebook_name: hoyin2582
+  password_digest: 123456
+  facebook_id: hoyin2582
+  token: 123456
+  email: hoyin2582@gmail.com

@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  has_secure_password
 
+  has_secure_password
   validates :facebook_name, presence: true, length: {maximum: 50}
   validates :facebook_id, presence: true
   validates :email, presence: false, format: {with: VALID_EMAIL_REGEX}
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_remember_token
+  def create_token
     self.token = User.digest(User.new_token)
   end
 

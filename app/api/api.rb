@@ -16,8 +16,29 @@ class API < Grape::API
   format :json
   content_type :json, "application/json;charset=utf-8"
 
-  mount Version1::LocationApi
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    Rack::Response.new({
+                           status: "Fail",
+                           message: e.message
+                       }.to_json).finish
+  end
+  rescue_from Exception do |e|
+    if Rails.env.development?
+      Rack::Response.new({
+                             error: "#{e.class} error",
+                             message: e.message
+                         }.to_json).finish
+    else
+      Rack::Response.new({
+                             status: "Fail",
+                             message: e.message
+                         }.to_json).finish
+    end
+  end
+
+  mount Version1::UserApi
   mount Version1::ItemApi
+  mount Version1::LocationApi
   mount Version1::PictureAPI
 
   if Rails.env.development?
@@ -25,8 +46,8 @@ class API < Grape::API
                               :markdown => true,
                               :hide_documentation_path => false
   else
-    # add_swagger_documentation :base_path => "http://booklibraryapi.herokuapp.com/api",
-    #                           :markdown => true,
-    #                           :hide_documentation_path => true
+    add_swagger_documentation :base_path => "http://booklibraryapi.herokuapp.com/api",
+                              :markdown => true,
+                              :hide_documentation_path => true
   end
 end

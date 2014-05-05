@@ -12,8 +12,10 @@ module Version1
       end
       expose :location, using: Location
       expose :user, using: User
+
       expose :comments, using: Comment, if: {type: :full}
       expose :tags, using: Tag
     end
+
   end
 end

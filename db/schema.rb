@@ -16,11 +16,13 @@ ActiveRecord::Schema.define(version: 20140504003409) do
   create_table "comments", force: true do |t|
     t.string   "message"
     t.integer  "item_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "comments", ["item_id"], name: "index_comments_on_item_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -29,14 +31,14 @@ ActiveRecord::Schema.define(version: 20140504003409) do
     t.integer  "watch_count",   default: 0
     t.integer  "like_count",    default: 0
     t.integer  "dislike_count", default: 0
-    t.integer  "picture_id"
     t.integer  "location_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "items", ["location_id"], name: "index_items_on_location_id"
-  add_index "items", ["picture_id"], name: "index_items_on_picture_id"
+  add_index "items", ["user_id"], name: "index_items_on_user_id"
 
   create_table "items_tags", id: false, force: true do |t|
     t.integer "item_id", null: false

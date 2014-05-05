@@ -3,6 +3,7 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.string :message
       t.references :item, index: true
+      t.references :user, index: true
       t.timestamps
     end
   end

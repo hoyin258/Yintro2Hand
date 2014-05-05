@@ -11,8 +11,8 @@ class CreateItems < ActiveRecord::Migration
       t.integer :dislike_count, default: 0, index: true
 
 
-      t.references :picture, index: true
       t.references :location, index: true
+      t.references :user, index: true
 
       t.timestamps
     end

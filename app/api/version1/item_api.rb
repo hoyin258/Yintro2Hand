@@ -28,9 +28,10 @@ module Version1
       end
       get :user do
         items = User.find(params[:id]).items
-        .paginate(page: params[:page], per_page: params[:per_page] || 20)
+        .paginate(page: params[:page]||1, per_page: params[:per_page] || 20)
         .order(updated_at: :desc)
 
+        Item.update_counters items.pluck(:id), watch_count: 1
         present :status, "Success"
         present :data, items, with: Entities::Item, pictures_limit: 1
       end
@@ -43,6 +44,7 @@ module Version1
       end
       get :detail do
         item = Item.find(params[:id])
+        Item.update_counters params[:id], watch_count: 1
         present :status, "Success"
         present :data, item, with: Entities::Item, pictures_limit: 30, type: :full
       end
@@ -80,6 +82,40 @@ module Version1
         end
       end
 
+      resource :count do
+
+        # POST
+        desc "Add watch count"
+        params do
+          requires :id, type: Integer, desc: "Item id."
+        end
+        post :watch do
+          if Item.update_counters params[:id], watch_count: 1
+            present :status, "Success"
+          end
+        end
+        # POST
+        desc "Add like count"
+        params do
+          requires :id, type: Integer, desc: "Item id."
+        end
+        post :like do
+          if Item.update_counters params[:id], like_count: 1
+            present :status, "Success"
+          end
+        end
+        # POST
+        desc "Add dislike count"
+        params do
+          requires :id, type: Integer, desc: "Item id."
+        end
+        post :dislike do
+          if Item.update_counters params[:id], dislike_count: 1
+            present :status, "Success"
+          end
+        end
+      end
+
 
       # PUT
       desc "Update Item"
@@ -91,7 +127,7 @@ module Version1
         requires :location_id, type: Integer
         optional :tags, type: String
       end
-      put ':item_id' do
+      put  do
         authenticate!
         item = @current_user.items.find(params[:item_id])
         if item
@@ -123,7 +159,7 @@ module Version1
       params do
         requires :item_id, type: Integer
       end
-      delete ':item_id' do
+      delete  do
         authenticate!
         item = @current_user.items.find(params[:item_id])
         item.destroy

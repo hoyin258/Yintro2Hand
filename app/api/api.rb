@@ -41,6 +41,7 @@ class API < Grape::API
   mount Version1::ItemApi
   mount Version1::LocationApi
   mount Version1::PictureAPI
+  mount Version1::CommentAPI
 
 
   if Rails.env.development?

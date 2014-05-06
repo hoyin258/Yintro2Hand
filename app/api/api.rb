@@ -3,7 +3,8 @@ class API < Grape::API
 
   helpers do
     def current_user
-      token = params[:api_key]
+      token = params[:token]
+      token = User.digest(token)
       @current_user ||= User.where(token: token).first
     end
     def authenticate!
@@ -12,7 +13,7 @@ class API < Grape::API
   end
 
   prefix 'v1'
-  version 'v1', using: :header, vendor: 'location'
+  # version 'v1', using: :header, vendor: 'location'
   format :json
   content_type :json, "application/json;charset=utf-8"
 
@@ -41,6 +42,7 @@ class API < Grape::API
   mount Version1::LocationApi
   mount Version1::PictureAPI
 
+
   if Rails.env.development?
     add_swagger_documentation :base_path => "http://localhost:3000/api",
                               :markdown => true,
@@ -50,4 +52,7 @@ class API < Grape::API
                               :markdown => true,
                               :hide_documentation_path => true
   end
+
+
+
 end

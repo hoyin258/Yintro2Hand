@@ -33,6 +33,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate'
 
 
+# Image
+gem 'carrierwave'
+
 #API
 gem 'grape'
 gem 'grape-entity'

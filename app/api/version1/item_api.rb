@@ -1,56 +1,48 @@
 module Version1
   class ItemApi < Grape::API
+    helpers APIHelper
 
+    
     resource :items do
 
-      # Get
+
       desc 'Returns item list from all user'
       params do
-        optional :page, type: Integer, desc: "Page num."
-        optional :per_page, type: Integer, desc: "No /page."
+        use  :pagination
       end
-      get :index do
+      get do
         items = Item
-        .paginate(page: params[:page]||1, per_page: params[:per_page] || 20)
+        .paginate(page: params[:page], per_page: params[:per_page])
         .order(updated_at: :desc)
-
         present :status, "Success"
-        present :data, items, with: Entities::Item, pictures_limit: 1
+        present :data, items, with: Entities::Item
       end
 
 
-      # Get
-      desc 'Returns item list by user id'
-      params do
-        requires :id, type: Integer, desc: "User id."
-        optional :page, type: Integer, desc: "Page num."
-        optional :per_page, type: Integer, desc: "No /page."
-      end
-      get :user do
-        items = User.find(params[:id]).items
-        .paginate(page: params[:page]||1, per_page: params[:per_page] || 20)
-        .order(updated_at: :desc)
 
-        Item.update_counters items.pluck(:id), watch_count: 1
-        present :status, "Success"
-        present :data, items, with: Entities::Item, pictures_limit: 1
-      end
-
-
-      # Get
       desc 'Returns item detail'
-      params do
-        requires :id, type: Integer, desc: "Item id."
-      end
-      get :detail do
+      get ':id' do
         item = Item.find(params[:id])
         Item.update_counters params[:id], watch_count: 1
         present :status, "Success"
-        present :data, item, with: Entities::Item, pictures_limit: 30, type: :full
+        present :data, item, with: Entities::Item, type: :full
       end
 
 
-      # POST
+
+      desc 'Returns comment list by item id'
+      params do
+        use  :pagination
+      end
+      get ':id/comments' do
+        comments = Item.find(params[:id]).comments
+        .paginate(page: params[:page], per_page: params[:per_page])
+        .order(updated_at: :desc)
+        present :status, "Success"
+        present :data, comments, with: Entities::Comment, type: :full
+      end
+
+
       desc "Create new item"
       params do
         requires :name, type: String
@@ -84,7 +76,6 @@ module Version1
 
       resource :count do
 
-        # POST
         desc "Add watch count"
         params do
           requires :id, type: Integer, desc: "Item id."
@@ -94,7 +85,6 @@ module Version1
             present :status, "Success"
           end
         end
-        # POST
         desc "Add like count"
         params do
           requires :id, type: Integer, desc: "Item id."
@@ -104,7 +94,6 @@ module Version1
             present :status, "Success"
           end
         end
-        # POST
         desc "Add dislike count"
         params do
           requires :id, type: Integer, desc: "Item id."
@@ -117,7 +106,6 @@ module Version1
       end
 
 
-      # PUT
       desc "Update Item"
       params do
         requires :item_id, type: Integer
@@ -154,7 +142,6 @@ module Version1
       end
 
 
-      # DELETE
       desc "Delete item"
       params do
         requires :item_id, type: Integer

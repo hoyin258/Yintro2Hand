@@ -7,5 +7,8 @@ class Item < ActiveRecord::Base
   belongs_to :location
 
 
+  def picture
+    pictures.first
+  end
 
 end

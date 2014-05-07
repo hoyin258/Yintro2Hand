@@ -4,14 +4,12 @@ module Version1
 
     resource :pictures do
 
-
-      #Get
-      get :pictures do
-        present Picture.all
+      get do
+        present :status, "Success"
+        present :data, Picture.all.limit(100), with: Version1::Entities::Picture
       end
 
 
-      #Post
       desc "Upload an image."
       params do
         requires :id, type: Integer, desc: "Item id."
@@ -29,14 +27,11 @@ module Version1
         picture = Picture.new
         picture.item_id = params[:id]
         picture.file = ActionDispatch::Http::UploadedFile.new(image_hash)
-        if picture.save
-          present :status, "Success"
-          present :data, picture, with: Version1::Entities::Picture
-        else
-          puts picture.errors.as_json
-        end
-
+        picture.save
+        present :status, "Success"
+        present :data, picture, with: Version1::Entities::Picture
       end
+
     end
   end
 end

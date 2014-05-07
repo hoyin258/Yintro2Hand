@@ -8,9 +8,8 @@ module Version1
       expose :watch_count
       expose :like_count
       expose :dislike_count
-      expose :pictures, using: Version1::Entities::Picture, unless: {type: :full} do |model, opts|
-        model.pictures.limit(opts[:pictures_limit] ||= 10)
-      end
+      expose :pictures, using: Version1::Entities::Picture, if: {type: :full}
+      expose :picture, using: Version1::Entities::Picture, unless: {type: :full}
       expose :location, using: Location
       expose :user, using: Version1::Entities::User
       expose :comments, using: Version1::Entities::Comment, if: {type: :full}

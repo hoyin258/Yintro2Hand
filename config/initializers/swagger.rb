@@ -1,7 +1,4 @@
 GrapeSwaggerRails.options.app_name = '二手簡介網API'
 GrapeSwaggerRails.options.api_key_name = 'token'
 GrapeSwaggerRails.options.api_key_type = 'query'
-
-if Rails.env.development?
-  GrapeSwaggerRails.options.url = 'http://localhost:3000/api/v1/swagger_doc.json'
-end
+GrapeSwaggerRails.options.url = '/api/v1/swagger_doc.json'

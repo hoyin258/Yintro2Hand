@@ -39,3 +39,6 @@ config/secrets.yml
 
 .idea/
 .DS_Store
+/public/assets/images/large
+/public/assets/images/thumb
+/public/assets/images/original

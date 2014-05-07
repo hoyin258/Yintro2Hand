@@ -15,4 +15,17 @@ class Picture < ActiveRecord::Base
                        :content_type => { :content_type => /\Aimage/ },
                        :size => { :less_than => 2.megabytes  }
 
+
+  def large
+    file.url :large
+  end
+
+  def original
+    file.url
+  end
+
+  def thumb
+    file.url :thumb
+  end
+
 end

@@ -5,7 +5,6 @@ module Version1
     resource :pictures do
 
 
-
       #Get
       get :pictures do
         present Picture.all
@@ -16,17 +15,16 @@ module Version1
       desc "Upload an image."
       params do
         requires :id, type: Integer, desc: "Item id."
-        requires :image, :type => Rack::Multipart::UploadedFile, :desc => "Image file."
+        requires :image, type: Rack::Multipart::UploadedFile, desc: "Image file."
       end
       post do
-        @current_user = User.first
         authenticate!
         image = params[:image]
         image_hash = {
-            :filename => image[:filename],
-            :type => image[:type],
-            :headers => image[:head],
-            :tempfile => image[:tempfile]
+            filename: image[:filename],
+            type: image[:type],
+            headers: image[:head],
+            tempfile: image[:tempfile]
         }
         picture = Picture.new
         picture.item_id = params[:id]

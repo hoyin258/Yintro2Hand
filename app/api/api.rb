@@ -13,7 +13,7 @@ class API < Grape::API
   end
 
   prefix 'v1'
-  # version 'v1', using: :header, vendor: 'location'
+  version 'v1', using: :header, vendor: 'some_vendor'
   format :json
   content_type :json, "application/json;charset=utf-8"
 
@@ -35,6 +35,11 @@ class API < Grape::API
                              message: e.message
                          }.to_json).finish
     end
+  end
+
+  before do
+    header['Access-Control-Allow-Origin'] = '*'
+    header['Access-Control-Request-Method'] = '*'
   end
 
   mount Version1::UserApi

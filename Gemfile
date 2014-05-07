@@ -34,7 +34,9 @@ gem 'will_paginate'
 
 
 # Image
-gem 'carrierwave'
+# gem 'carrierwave'
+# gem "mini_magick"
+gem 'paperclip'
 
 #API
 gem 'grape'

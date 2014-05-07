@@ -41,7 +41,7 @@ module Version1
           token = User.new_token
           user.update_attribute(:token, User.digest(token))
           present :status, "Success"
-          present :data, user.token
+          present :data, token
         end
       end
 

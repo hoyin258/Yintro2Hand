@@ -10,7 +10,18 @@ module Version1
         requires :id, type: Integer, desc: "User id."
       end
       get :user do
-        comments = User.find(params[:id]).comments.order(updated_at: :desc)
+        comments = Comment.where(user_id: params[:id]).order(updated_at: :desc)
+        present :status, "Success"
+        present :data, comments, with: Entities::Comment, type: :full
+      end
+
+      # Get
+      desc 'Returns comment list by item id'
+      params do
+        requires :id, type: Integer, desc: "Item id."
+      end
+      get :item do
+        comments = Item.find(params[:id]).comments.order(updated_at: :desc)
         present :status, "Success"
         present :data, comments, with: Entities::Comment, type: :full
       end
@@ -24,16 +35,16 @@ module Version1
       end
       post do
         authenticate!
-        comment = Comment.new(
+        comment = Item.find(params[:id]).comments.build(
             message: params[:message],
-            item_id: params[:id],
-            user_id: @current_user.id,
         )
         if comment.save
           present :status, "Success"
           present :data, comment, with: Version1::Entities::Comment
         end
+
       end
+
 
       # PUT
       desc "Update Comment"
@@ -44,16 +55,12 @@ module Version1
       put do
         authenticate!
         comment = @current_user.comments.find(params[:id])
-        if comment
-          comment.update({
-                             message: params[:message],
-                         })
-          present :status, "Success"
-          present :data, comment, with: Version1::Entities::Comment
-        end
+        comment.update({
+                           message: params[:message],
+                       })
+        present :status, "Success"
+        present :data, comment, with: Version1::Entities::Comment
       end
-
-
     end
   end
 end

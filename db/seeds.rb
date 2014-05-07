@@ -67,20 +67,20 @@ items = Item.create([
 
 item_a = Item.first
 item_b = Item.last
-pictures = Picture.create([
-                              {
-                                  item: item_a,
-                                  url: "http://www.wired.com/images_blogs/gadgetlab/2009/09/cliq-front-open-tmo.jpg"
-                              },
-                              {
-                                  item: item_a,
-                                  url: "http://cdn-static.zdnet.com/i/story/70/00/000436/wowcomputer.png"
-                              },
-                              {
-                                  item: item_b,
-                                  url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMLm4eGiWXcbDDcyipCHsWnq2jygzc81yZUBql0m8YMzMmm6MyMQ"
-                              }
-                          ])
+# pictures = Picture.create([
+#                               {
+#                                   item: item_a,
+#                                   file: "http://www.wired.com/images_blogs/gadgetlab/2009/09/cliq-front-open-tmo.jpg"
+#                               },
+#                               {
+#                                   item: item_a,
+#                                   file: "http://cdn-static.zdnet.com/i/story/70/00/000436/wowcomputer.png"
+#                               },
+#                               {
+#                                   item: item_b,
+#                                   file: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMLm4eGiWXcbDDcyipCHsWnq2jygzc81yZUBql0m8YMzMmm6MyMQ"
+#                               }
+#                           ])
 
 comments =Comment.create([
                              {

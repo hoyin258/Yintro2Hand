@@ -55,7 +55,10 @@ ActiveRecord::Schema.define(version: 20140504003409) do
   end
 
   create_table "pictures", force: true do |t|
-    t.string   "url"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
     t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"

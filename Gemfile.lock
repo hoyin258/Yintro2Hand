@@ -34,11 +34,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.7)
     builder (3.2.2)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.0.1)
@@ -103,6 +102,11 @@ GEM
     minitest (5.3.3)
     multi_json (1.9.3)
     multi_xml (0.5.5)
+    paperclip (4.1.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     polyglot (0.3.4)
     rack (1.5.2)
     rack-accept (0.4.5)
@@ -174,7 +178,6 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
-  carrierwave
   coffee-rails (~> 4.0.0)
   garner
   grape
@@ -184,6 +187,7 @@ DEPENDENCIES
   grape-swagger-rails
   jbuilder (~> 2.0)
   jquery-rails
+  paperclip
   rails (= 4.1.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

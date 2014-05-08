@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :facebook_name
       t.string :password_digest
       t.string :facebook_id, null: false, default: ""
+      t.string :facebook_accesstoken
       t.string :token
       t.string :email
 

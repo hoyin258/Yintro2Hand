@@ -76,7 +76,8 @@ ActiveRecord::Schema.define(version: 20140504003409) do
     t.string   "name"
     t.string   "facebook_name"
     t.string   "password_digest"
-    t.string   "facebook_id",     default: "", null: false
+    t.string   "facebook_id",          default: "", null: false
+    t.string   "facebook_accesstoken"
     t.string   "token"
     t.string   "email"
     t.datetime "created_at"

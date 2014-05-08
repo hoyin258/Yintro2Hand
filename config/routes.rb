@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :items
 
-  root 'items#index'
+  root '/adpidoc'
 
   mount API => '/api'
   mount GrapeSwaggerRails::Engine => 'apidoc'

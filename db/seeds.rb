@@ -27,79 +27,65 @@ locations= Location.create([
                                {name: "新界-離島區"}
                            ])
 
-tags = Tag.create([
-                      {name: "手機"},
-                      {name: "電腦"},
-                      {name: "其他"}
-                  ])
-
-users = User.create([
-                        {name: "陳大文", facebook_name: "chanbigman1", password: "123456",
-                         password_confirmation: "123456", facebook_id: "chanbigman1", email: "chanbigman1@gmail.com"},
-                        {name: "黃小明", facebook_name: "wongsiuming", password: "123456",
-                         password_confirmation: "123456", facebook_id: "wongsiuming", email: "wongsiuming@gmail.com"},
-                    ])
-
-
-location_a = Location.first
-tags_a =Tag.first
-tags_b =Tag.last
-user_a = User.first
-user_b = User.last
-items = Item.create([
-                        {
-                            name: "HTC 手機",
-                            description: "九成新，功能齊全",
-                            price: 500,
-                            location: location_a,
-                            tags: [tags_a, tags_b],
-                            user: user_a,
-                        },
-                        {
-                            name: "另一部手機",
-                            description: "都幾好用",
-                            price: 1000,
-                            location: location_a,
-                            tags: [tags_a, tags_b],
-                            user: user_a,
-                        }
-                    ])
-
-item_a = Item.first
-item_b = Item.last
-# pictures = Picture.create([
-#                               {
-#                                   item: item_a,
-#                                   file: "http://www.wired.com/images_blogs/gadgetlab/2009/09/cliq-front-open-tmo.jpg"
-#                               },
-#                               {
-#                                   item: item_a,
-#                                   file: "http://cdn-static.zdnet.com/i/story/70/00/000436/wowcomputer.png"
-#                               },
-#                               {
-#                                   item: item_b,
-#                                   file: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMLm4eGiWXcbDDcyipCHsWnq2jygzc81yZUBql0m8YMzMmm6MyMQ"
-#                               }
-#                           ])
-
-comments =Comment.create([
-                             {
-                                 message: "幾好呀",
-                                 user: user_a,
-                                 item: item_a
-
-                             },
-                             {
-                                 message: "唔錯",
-                                 user: user_b,
-                                 item: item_a
-                             },
-                             {
-                                 message: "差",
-                                 user: user_a,
-                                 item: item_b
-
-                             }
-])
+# tags = Tag.create([
+#                       {name: "手機"},
+#                       {name: "電腦"},
+#                       {name: "其他"}
+#                   ])
+#
+# users = User.create([
+#                         {name: "陳大文", facebook_name: "chanbigman1", password: "123456",
+#                          password_confirmation: "123456", facebook_id: "chanbigman1", email: "chanbigman1@gmail.com"},
+#                         {name: "黃小明", facebook_name: "wongsiuming", password: "123456",
+#                          password_confirmation: "123456", facebook_id: "wongsiuming", email: "wongsiuming@gmail.com"},
+#                     ])
+#
+#
+# location_a = Location.first
+# tags_a =Tag.first
+# tags_b =Tag.last
+# user_a = User.first
+# user_b = User.last
+# items = Item.create([
+#                         {
+#                             name: "HTC 手機",
+#                             description: "九成新，功能齊全",
+#                             price: 500,
+#                             location: location_a,
+#                             tags: [tags_a, tags_b],
+#                             user: user_a,
+#                         },
+#                         {
+#                             name: "另一部手機",
+#                             description: "都幾好用",
+#                             price: 1000,
+#                             location: location_a,
+#                             tags: [tags_a, tags_b],
+#                             user: user_a,
+#                         }
+#                     ])
+#
+# item_a = Item.first
+# item_b = Item.last
+#
+# comments =Comment.create([
+#                              {
+#                                  message: "幾好呀",
+#                                  user: user_a,
+#                                  item: item_a
+#
+#                              },
+#                              {
+#                                  message: "唔錯",
+#                                  user: user_b,
+#                                  item: item_a
+#                              },
+#                              {
+#                                  message: "差",
+#                                  user: user_a,
+#                                  item: item_b
+#
+#                              }
+# ])
 
 
